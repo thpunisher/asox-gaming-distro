@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# Toggle Asox Game Mode: turns off blur, animations, gaps and shadows for max FPS.
+if [ "$(hyprctl getoption animations:enabled -j | jq -r '.int')" = "1" ]; then
+  hyprctl --batch "\
+    keyword animations:enabled 0;\
+    keyword decoration:blur:enabled 0;\
+    keyword decoration:shadow:enabled 0;\
+    keyword general:gaps_in 0;\
+    keyword general:gaps_out 0;\
+    keyword decoration:rounding 0"
+  notify-send "Asox Game Mode" "ON - eye candy off, FPS up"
+else
+  hyprctl reload
+  notify-send "Asox Game Mode" "OFF - sakura mode restored"
+fi

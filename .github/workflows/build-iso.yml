@@ -1,0 +1,42 @@
+name: Build Asox ISO
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+
+      # The ISO is big, so free space on the runner before building
+      - name: Free disk space
+        run: |
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /usr/local/.ghcup /opt/hostedtoolcache/CodeQL
+          sudo docker image prune --all --force
+          df -h /
+
+      - name: Build ISO inside an Arch Linux container
+        run: |
+          mkdir -p out
+          docker run --privileged --rm \
+            -v "$PWD":/work -w /work \
+            archlinux:latest bash scripts/build.sh
+
+      - name: Checksum
+        run: |
+          cd out
+          sha256sum *.iso > SHA256SUMS
+          ls -lh
+
+      - name: Upload ISO
+        uses: actions/upload-artifact@v4
+        with:
+          name: asox-iso
+          path: out/*
+          compression-level: 0
+          retention-days: 14

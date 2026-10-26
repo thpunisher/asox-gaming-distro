@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# Downloads the latest Proton-GE for Steam. Restart Steam afterwards,
+# then pick it in a game's Properties > Compatibility.
+set -euo pipefail
+dest="$HOME/.local/share/Steam/compatibilitytools.d"
+mkdir -p "$dest"
+url=$(curl -s https://api.github.com/repos/GloriousEggroll/proton-ge-custom/releases/latest \
+  | jq -r '.assets[] | select(.name | endswith(".tar.gz")) | .browser_download_url')
+echo "Downloading: $url"
+curl -L "$url" | tar -xz -C "$dest"
+echo "Done! Restart Steam."

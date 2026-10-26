@@ -1,0 +1,14 @@
+[Unit]
+Description=Create the Asox live user
+Before=display-manager.service sddm.service
+After=local-fs.target
+ConditionPathExists=!/home/asox
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/useradd -m -G wheel,video,audio,input -s /bin/bash asox
+ExecStart=/usr/bin/passwd -d asox
+
+[Install]
+WantedBy=multi-user.target

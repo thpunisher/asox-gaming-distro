@@ -1,0 +1,72 @@
+# ---- Asox extra packages (merged with the official releng list) ----
+# Everything here is in the official Arch repos so the CI build stays reliable.
+
+# Desktop: Hyprland + anime rice
+hyprland
+hyprlock
+hyprpolkitagent
+xdg-desktop-portal-hyprland
+xdg-desktop-portal-gtk
+xorg-xwayland
+qt5-wayland
+qt6-wayland
+waybar
+swaybg
+wofi
+mako
+kitty
+thunar
+grim
+slurp
+wl-clipboard
+brightnessctl
+playerctl
+jq
+libnotify
+sddm
+sudo
+fastfetch
+
+# Fonts and icons
+noto-fonts
+noto-fonts-cjk
+noto-fonts-emoji
+ttf-jetbrains-mono-nerd
+ttf-font-awesome
+ttf-liberation
+papirus-icon-theme
+
+# Audio and network
+pipewire
+pipewire-alsa
+pipewire-pulse
+wireplumber
+pavucontrol
+networkmanager
+network-manager-applet
+
+# Gaming
+steam
+lutris
+wine
+wine-mono
+wine-gecko
+winetricks
+gamemode
+lib32-gamemode
+gamescope
+mangohud
+lib32-mangohud
+mesa
+lib32-mesa
+vulkan-icd-loader
+lib32-vulkan-icd-loader
+vulkan-radeon
+lib32-vulkan-radeon
+vulkan-intel
+lib32-vulkan-intel
+obs-studio
+discord
+
+# Apps
+firefox

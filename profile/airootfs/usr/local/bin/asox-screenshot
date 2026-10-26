@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Select an area, copy it to the clipboard and save it in ~/Pictures
+mkdir -p "$HOME/Pictures"
+file="$HOME/Pictures/asox-$(date +%Y%m%d-%H%M%S).png"
+grim -g "$(slurp)" "$file" && wl-copy < "$file" && notify-send "Screenshot saved" "$file"
